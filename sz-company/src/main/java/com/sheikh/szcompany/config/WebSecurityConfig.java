@@ -24,7 +24,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		  //TODO Auto-generated method stub 
 		  http.authorizeRequests().
 		  antMatchers("/","/home").permitAll().anyRequest().authenticated().and().httpBasic();
-		  //super.configure(http); 
 	  }
 	 
 	@Bean
