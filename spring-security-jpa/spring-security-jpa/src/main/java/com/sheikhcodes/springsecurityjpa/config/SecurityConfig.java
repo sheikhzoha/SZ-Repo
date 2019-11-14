@@ -1,5 +1,7 @@
 package com.sheikhcodes.springsecurityjpa.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,11 +18,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	UserDetailsService userDetailsService;
+	
+	@Autowired
+	DataSource datasource;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
 		auth.userDetailsService(this.userDetailsService);
+		//auth.jdbcAuthentication().dataSource(dataSource);
+		//auth.jdbcAuthentication().dataSource(datasource).usersByUsernameQuery("select username from foo")
 		//auth.inMemoryAuthentication().withUser("foo").password("foo").roles("ADMIN");
 	}
 
