@@ -11,6 +11,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class MyUser implements UserDetails {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String username;
 	private String password;
 	private String userrole;
@@ -19,25 +23,25 @@ public class MyUser implements UserDetails {
 	public MyUser(String username) {
 		this.username=username;
 		this.password="foo";
-		this.password="ROLE_ADMIN";
+		this.userrole="ROLE_ADMIN";
 		this.active=true;
 	}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return Arrays.asList(this.password.split(",")).stream().map(s->new SimpleGrantedAuthority(s)).collect(Collectors.toList());
+		return Arrays.asList(this.userrole.split(",")).stream().map(s->new SimpleGrantedAuthority(s)).collect(Collectors.toList());
 	}
 
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return password;
+		return this.password;
 	}
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return username;
+		return this.username;
 	}
 
 	@Override
